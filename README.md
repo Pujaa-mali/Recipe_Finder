@@ -103,16 +103,16 @@ npm run lint
 ## Screenshots
 
 ### Home Page
-![Recipe Finder Home Page](./screenshots/home.png)
+![Recipe Finder Home Page](./Screenshots/home.png)
 
 ### Search Results
-![Recipe Finder Search Results](./screenshots/search.png)
+![Recipe Finder Search Results](./Screenshots/search.png)
 
 ### Recipe Details
-![Recipe Finder Recipe Details](./screenshots/details.png)
+![Recipe Finder Recipe Details](./Screenshots/details.png)
 
 ### Favorite Page
-![Recipe Finder Favorite Page](./screenshots/favorites.png)
+![Recipe Finder Favorite Page](./Screenshots/favorites.png)
 
 
 ## Known limitations
