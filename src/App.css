@@ -1,0 +1,721 @@
+/* Remove browser default spacing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Make the entire page fill the screen */
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Main application */
+.app {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-content {
+  flex: 1;
+}
+
+/* ---------------- NAVBAR ---------------- */
+
+.navbar {
+  width: 100%;
+  height: 76px;
+
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: "brand search links";
+  align-items: center;
+  column-gap: 28px;
+
+  padding: 0 40px;
+
+  background-color: #ffffff;
+
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+
+  position: relative;
+  z-index: 10;
+}
+
+.navbar-brand {
+  grid-area: brand;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Logo */
+
+.navbar h2 {
+  font-size: 26px;
+  font-weight: 600;
+  color: #f05a00;
+}
+
+/* Navigation links */
+
+.nav-links {
+  grid-area: links;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #222222;
+
+  font-size: 17px;
+  font-weight: 600;
+
+  transition: 0.2s;
+}
+
+.nav-links a:hover {
+  color: #f05a00;
+}
+
+/*  NAV-EMBEDDED SEARCH BAR  */
+
+.nav-search {
+  grid-area: search;
+  display: flex;
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.nav-search input {
+  flex: 1;
+  min-width: 0;
+
+  height: 44px;
+
+  padding: 0 16px;
+
+  font-size: 15px;
+
+  color: #333333;
+
+  border: 1.5px solid #d5d9df;
+
+  border-right: none;
+
+  border-radius: 8px 0 0 8px;
+
+  outline: none;
+}
+
+.nav-search input:focus {
+  border-color: #f05a00;
+}
+
+.nav-search button {
+  height: 44px;
+
+  padding: 0 22px;
+
+  border: none;
+
+  border-radius: 0 8px 8px 0;
+
+  background-color: #f05a00;
+
+  color: white;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+  flex-shrink: 0;
+}
+
+.nav-search button:hover {
+  background-color: #d94f00;
+}
+
+/* ---------------- MOBILE ---------------- */
+
+@media (max-width: 900px) {
+
+  .navbar {
+    height: auto;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "brand links"
+      "search search";
+    row-gap: 14px;
+    padding: 16px 20px;
+  }
+
+  .navbar h2 {
+    font-size: 21px;
+  }
+
+  .nav-links {
+    gap: 18px;
+  }
+
+  .nav-links a {
+    font-size: 15px;
+  }
+
+  .nav-search {
+    max-width: 100%;
+  }
+}
+
+/* ---------------- RECIPE RESULTS ---------------- */
+
+.recipe-results {
+  width: 90%;
+  max-width: 1200px;
+
+  margin: 60px auto;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 30px;
+}
+
+/* Recipe card */
+
+.recipe-card {
+  background-color: white;
+
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.recipe-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Recipe image */
+
+.recipe-card img {
+  width: 100%;
+  height: 230px;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+/* Recipe name */
+
+.recipe-card h3 {
+  font-size: 21px;
+
+  margin: 18px 18px 8px;
+
+  color: #222;
+}
+
+/* Category / area tags */
+
+.recipe-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 18px 20px;
+}
+
+.meta-tag {
+  display: inline-block;
+  background: #fdece0;
+  color: #f05a00;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 4px 11px;
+  border-radius: 999px;
+}
+
+.meta-tag.muted {
+  background: #f1f1f1;
+  color: #777;
+}
+
+/*  RESPONSIVE */
+
+@media (max-width: 900px) {
+
+  .recipe-results {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+
+  .recipe-results {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------------- NAV ACTIVE STATE ---------------- */
+
+.nav-links a.active {
+  color: #f05a00;
+}
+
+/* ---------------- RESULTS HEADING ---------------- */
+
+.results-heading {
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto 0;
+  text-align: left;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #999;
+}
+
+.page-header {
+  width: 90%;
+  max-width: 1200px;
+  margin: 50px auto 0;
+  text-align: left;
+}
+
+.page-header h1 {
+  font-size: 40px;
+  color: #111;
+  margin-bottom: 8px;
+}
+
+.page-header p {
+  color: #666;
+  font-size: 17px;
+}
+
+/* ---------------- SEARCH FORM (category select) ---------------- */
+
+.category-select {
+  height: 44px;
+  padding: 0 10px;
+  font-size: 14px;
+  color: #333;
+  border: 1.5px solid #d5d9df;
+  border-left: none;
+  border-right: none;
+  outline: none;
+  background: #fff;
+  max-width: 130px;
+}
+
+.category-select:focus {
+  border-color: #f05a00;
+}
+
+@media (max-width: 480px) {
+  .category-select {
+    max-width: 90px;
+    font-size: 12px;
+    padding: 0 6px;
+  }
+
+  .nav-search button {
+    padding: 0 14px;
+  }
+}
+
+/* ---------------- RECIPE CARD (link wrapper + favorite btn) ---------------- */
+
+.recipe-card {
+  position: relative;
+}
+
+.recipe-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.recipe-card-body {
+  padding: 0;
+}
+
+.favorite-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.92);
+  color: #f05a00;
+  font-size: 20px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.15s ease;
+}
+
+.favorite-btn:hover {
+  transform: scale(1.08);
+}
+
+.favorite-btn.active {
+  background: #f05a00;
+  color: #fff;
+}
+
+/* ---------------- LOADING SKELETON ---------------- */
+
+.skeleton-card {
+  height: 320px;
+  background: linear-gradient(100deg, #f0f0f0 30%, #f8f8f8 45%, #f0f0f0 60%);
+  background-size: 200% 100%;
+  animation: shimmer 1.3s ease-in-out infinite;
+  box-shadow: none;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 140% 0;
+  }
+  100% {
+    background-position: -40% 0;
+  }
+}
+
+/* ---------------- EMPTY STATE ---------------- */
+
+.empty-state {
+  width: 90%;
+  max-width: 600px;
+  margin: 60px auto;
+  text-align: center;
+  padding: 48px 24px;
+  border: 1px dashed #d5d9df;
+  border-radius: 12px;
+  color: #777;
+}
+
+.empty-state h3 {
+  color: #222;
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.empty-state-action {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.back-link {
+  display: inline-block;
+  margin: 24px auto 0;
+  color: #f05a00;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+/* ---------------- RECIPE DETAIL PAGE ---------------- */
+
+.detail-loading {
+  text-align: center;
+  padding: 100px 20px;
+  color: #777;
+  font-size: 18px;
+}
+
+.recipe-detail {
+  width: 90%;
+  max-width: 1000px;
+  margin: 40px auto 80px;
+}
+
+.detail-header {
+  display: flex;
+  gap: 36px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.detail-header img {
+  width: 360px;
+  max-width: 100%;
+  border-radius: 14px;
+  object-fit: cover;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.detail-header-info {
+  flex: 1;
+  min-width: 240px;
+}
+
+.detail-tag {
+  display: inline-block;
+  background: #fdece0;
+  color: #f05a00;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-right: 8px;
+  margin-bottom: 12px;
+}
+
+.detail-header-info h1 {
+  font-size: 34px;
+  color: #111;
+  margin: 4px 0 16px;
+  line-height: 1.2;
+}
+
+.detail-favorite {
+  position: static;
+  width: 48px;
+  height: 48px;
+  font-size: 22px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  margin-bottom: 14px;
+}
+
+.video-link {
+  display: block;
+  margin-top: 10px;
+  color: #f05a00;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.video-link:hover {
+  text-decoration: underline;
+}
+
+.detail-body {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 48px;
+  margin-top: 44px;
+}
+
+@media (max-width: 768px) {
+  .detail-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ingredients-panel h2,
+.instructions-panel h2 {
+  font-size: 20px;
+  color: #111;
+  margin-bottom: 16px;
+}
+
+.ingredients-panel ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ingredients-panel li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 15px;
+  color: #333;
+}
+
+.ingredients-panel .measure {
+  color: #888;
+}
+
+.instructions-panel p {
+  color: #444;
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+/* ---------------- HERO CAROUSEL ---------------- */
+
+.hero-carousel {
+  position: relative;
+  width: 92%;
+  max-width: 1240px;
+  height: clamp(240px, 40vw, 440px);
+  margin: 24px auto 0;
+  border-radius: 28px;
+  overflow: hidden;
+  background: #222;
+}
+
+.hero-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.6s ease;
+}
+
+.hero-slide {
+  position: relative;
+  flex: 0 0 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 clamp(56px, 8vw, 110px);
+  background-size: cover;
+  background-position: center;
+}
+
+/* Colour backgrounds, visible until the photos load (or if they fail) */
+.slide-0 { background-color: #b8430a; }
+.slide-1 { background-color: #1f5f4a; }
+.slide-2 { background-color: #7a1f3d; }
+
+/* Dark gradient so the white text stays readable over any photo */
+.hero-slide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.2) 70%);
+}
+
+.hero-content {
+  position: relative;
+  color: #fff;
+  max-width: 620px;
+}
+
+.hero-content h2 {
+  font-family: 'Anton', Impact, 'Arial Narrow', sans-serif;
+  font-weight: 400;
+  font-size: clamp(34px, 7vw, 88px);
+  line-height: 0.98;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0 0 14px;
+}
+
+.hero-content p {
+  font-size: clamp(12px, 1.6vw, 19px);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin: 0 0 22px;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.hero-cta {
+  display: inline-block;
+  background: #f05a00;
+  color: #fff;
+  font-size: clamp(12px, 1.4vw, 16px);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 11px 24px;
+  transform: rotate(-3deg);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.hero-cta:hover {
+  background: #d94f00;
+  transform: rotate(-3deg) scale(1.05);
+}
+
+.hero-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.hero-arrow:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.hero-arrow.prev { left: 14px; }
+.hero-arrow.next { right: 14px; }
+
+.hero-dots {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.hero-dots button {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+
+.hero-dots button.active {
+  background: #fff;
+  width: 26px;
+  border-radius: 999px;
+}
+
+@media (max-width: 600px) {
+  .hero-arrow {
+    width: 34px;
+    height: 34px;
+    font-size: 24px;
+  }
+  .hero-carousel {
+    border-radius: 18px;
+  }
+}
+
+/* ---------------- FOOTER ---------------- */
+
+.site-footer {
+  margin-top: 60px;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #888;
+  border-top: 1px solid #ececec;
+  background-color: #fafafa;
+}
